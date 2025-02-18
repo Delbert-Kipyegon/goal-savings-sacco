@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useState } from "react"
-import { Download, Filter } from "lucide-react"
+import { Download} from "lucide-react"
 
 export default function TransactionsPage() {
   const [filter, setFilter] = useState("all")

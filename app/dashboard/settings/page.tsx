@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { useState } from "react"
-import { Bell, Shield, Smartphone, Mail } from "lucide-react"
+import { Bell, Shield} from "lucide-react"
 
 export default function SettingsPage() {
   const [notifications, setNotifications] = useState({

@@ -214,7 +214,9 @@ export default function Home() {
 							<Card key={index}>
 								<CardContent className="pt-6">
 									<div className="text-center">
-										<p className="text-gray-600 mb-4">"{testimonial.quote}"</p>
+										<p className="text-gray-600 mb-4">
+											&quot;{testimonial.quote}&quot;
+										</p>
 										<p className="font-semibold">{testimonial.author}</p>
 										<p className="text-sm text-gray-500">{testimonial.role}</p>
 									</div>
