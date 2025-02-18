@@ -8,7 +8,6 @@ import {
 	PiggyBank,
 	Target,
 	History,
-	Users,
 	User,
 	Settings,
 	Menu,
