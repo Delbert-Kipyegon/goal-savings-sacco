@@ -205,7 +205,7 @@ export default function NewGoalPage() {
 									name="targetAmount"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Target Amount ($)</FormLabel>
+											<FormLabel>Target Amount (Kshs)</FormLabel>
 											<FormControl>
 												<Input
 													type="number"
@@ -218,8 +218,8 @@ export default function NewGoalPage() {
 												/>
 											</FormControl>
 											<FormDescription>
-												Min: ${selectedGoal.minAmount.toLocaleString()} - Max: $
-												{selectedGoal.maxAmount.toLocaleString()}
+												Min: kshs {selectedGoal.minAmount.toLocaleString()} -
+												Max: Kshs {selectedGoal.maxAmount.toLocaleString()}
 											</FormDescription>
 											<FormMessage />
 										</FormItem>
@@ -258,7 +258,7 @@ export default function NewGoalPage() {
 								name="monthlyContribution"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>Monthly Contribution ($)</FormLabel>
+										<FormLabel>Monthly Contribution (Kshs)</FormLabel>
 										<FormControl>
 											<Input
 												type="number"
@@ -281,7 +281,7 @@ export default function NewGoalPage() {
 									Interest Rate: {selectedGoal.interestRate}% APR
 								</p>
 								<p className="text-sm">
-									Total Expected Value: $
+									Total Expected Value: Kshs
 									{(
 										form.watch("monthlyContribution") *
 										form.watch("duration") *

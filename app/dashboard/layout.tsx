@@ -20,7 +20,6 @@ const sidebarLinks = [
 	{ href: "/dashboard/savings/deposit", label: "My Savings", icon: PiggyBank },
 	{ href: "/dashboard/goals", label: "Savings Goals", icon: Target },
 	{ href: "/dashboard/transactions", label: "Transactions", icon: History },
-	{ href: "/dashboard/groups", label: "Savings Groups", icon: Users },
 	{ href: "/dashboard/profile", label: "Profile", icon: User },
 	{ href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
