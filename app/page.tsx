@@ -8,7 +8,7 @@ export default function Home() {
 			{/* Hero Section */}
 			<header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
 				<nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-					<div className="text-2xl font-bold">GoalSacco</div>
+					<div className="text-2xl font-bold">Goalify</div>
 					<div className="space-x-4">
 						<Button
 							variant="ghost"
@@ -48,7 +48,7 @@ export default function Home() {
 			<section className="py-20 bg-gray-50">
 				<div className="container mx-auto px-6">
 					<h2 className="text-4xl font-bold text-center mb-16">
-						Why Choose GoalSacco?
+						Why Choose Goalify?
 					</h2>
 					<div className="grid md:grid-cols-3 gap-12">
 						<Card>
@@ -194,7 +194,7 @@ export default function Home() {
 						{[
 							{
 								quote:
-									"GoalSacco helped me save for my dream house. The community support made all the difference!",
+									"Goalify helped me save for my dream house. The community support made all the difference!",
 								author: "Sarah Johnson",
 								role: "Member since 2023",
 							},
@@ -235,7 +235,7 @@ export default function Home() {
 					</h2>
 					<p className="text-xl mb-12 max-w-2xl mx-auto">
 						Join thousands of members who are achieving their financial goals
-						with GoalSacco.
+						with Goalify.
 					</p>
 					<Button
 						size="lg"
@@ -252,7 +252,7 @@ export default function Home() {
 				<div className="container mx-auto px-6">
 					<div className="grid md:grid-cols-4 gap-8">
 						<div>
-							<h3 className="text-xl font-bold mb-4">GoalSacco</h3>
+							<h3 className="text-xl font-bold mb-4">Goalify</h3>
 							<p className="text-gray-400">
 								Making savings goals achievable together.
 							</p>
@@ -339,7 +339,7 @@ export default function Home() {
 					</div>
 					<div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
 						<p>
-							&copy; {new Date().getFullYear()} GoalSacco. All rights reserved.
+							&copy; {new Date().getFullYear()} Goalify. All rights reserved.
 						</p>
 					</div>
 				</div>

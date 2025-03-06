@@ -24,7 +24,7 @@ export default function LoginPage() {
 			<Card className="w-full max-w-md">
 				<CardHeader>
 					<CardTitle className="text-2xl text-center">
-						Login to GoalSacco
+						Login to Goalify
 					</CardTitle>
 				</CardHeader>
 				<CardContent>

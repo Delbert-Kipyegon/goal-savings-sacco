@@ -38,7 +38,7 @@ export default function DashboardLayout({
 					href="/dashboard"
 					className="text-xl font-bold"
 				>
-					GoalSacco
+					Goalify
 				</Link>
 				<Button
 					variant="ghost"
@@ -72,7 +72,7 @@ export default function DashboardLayout({
 						href="/dashboard"
 						className="text-xl font-bold"
 					>
-						GoalSacco
+						Goalify
 					</Link>
 				</div>
 				<nav className="mt-6 space-y-1 px-2">

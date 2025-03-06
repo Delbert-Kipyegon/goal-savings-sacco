@@ -15,14 +15,49 @@ export default function RegisterPage() {
 		password: "",
 		confirmPassword: "",
 	});
+	const [error, setError] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
 
 	const router = useRouter();
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		// Add your registration logic here
+		setError("");
+		setIsLoading(true);
 
-		router.push("/dashboard");
+		// Validate passwords match
+		if (formData.password !== formData.confirmPassword) {
+			setError("Passwords do not match");
+			setIsLoading(false);
+			return;
+		}
+
+		try {
+			const response = await fetch("/api/auth/register", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					name: formData.fullName,
+					email: formData.email,
+					password: formData.password,
+				}),
+			});
+
+			const data = await response.json();
+
+			if (!response.ok) {
+				throw new Error(data.error || "Registration failed");
+			}
+
+			// Registration successful
+			router.push("/login?registered=true");
+		} catch (err) {
+			setError(err instanceof Error ? err.message : "Something went wrong");
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,6 +76,11 @@ export default function RegisterPage() {
 					</CardTitle>
 				</CardHeader>
 				<CardContent>
+					{error && (
+						<div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+							{error}
+						</div>
+					)}
 					<form
 						onSubmit={handleSubmit}
 						className="space-y-4"
@@ -91,8 +131,9 @@ export default function RegisterPage() {
 						<Button
 							type="submit"
 							className="w-full"
+							disabled={isLoading}
 						>
-							Register
+							{isLoading ? "Creating Account..." : "Register"}
 						</Button>
 					</form>
 					<p className="text-center mt-4">
