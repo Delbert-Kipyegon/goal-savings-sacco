@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -15,19 +16,16 @@ export default function RegisterPage() {
 		password: "",
 		confirmPassword: "",
 	});
-	const [error, setError] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
-
 	const router = useRouter();
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		setError("");
 		setIsLoading(true);
 
 		// Validate passwords match
 		if (formData.password !== formData.confirmPassword) {
-			setError("Passwords do not match");
+			toast.error("Passwords do not match. Please try again.");
 			setIsLoading(false);
 			return;
 		}
@@ -52,9 +50,14 @@ export default function RegisterPage() {
 			}
 
 			// Registration successful
-			router.push("/login?registered=true");
+			toast.success("Your account has been created. Redirecting to login...");
+
+			// Short delay before redirect to show the success message
+			setTimeout(() => {
+				router.push("/login?registered=true");
+			}, 2000);
 		} catch (err) {
-			setError(err instanceof Error ? err.message : "Something went wrong");
+			toast.error(err instanceof Error ? err.message : "Something went wrong. Please try again.");
 		} finally {
 			setIsLoading(false);
 		}
@@ -76,11 +79,6 @@ export default function RegisterPage() {
 					</CardTitle>
 				</CardHeader>
 				<CardContent>
-					{error && (
-						<div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-							{error}
-						</div>
-					)}
 					<form
 						onSubmit={handleSubmit}
 						className="space-y-4"

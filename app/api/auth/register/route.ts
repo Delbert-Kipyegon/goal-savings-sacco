@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import clientPromise from "@/lib/mongodb";
 
 export async function POST(req: Request) {
-	try {
+	try {	
 		const { email, password, name } = await req.json();
 
 		if (!email || !password || !name) {
