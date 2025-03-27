@@ -1,43 +1,39 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { verifyJwtToken } from "@/lib/jwt";
 
 // Define public routes that don't require authentication
 const publicRoutes = [
-	"/login",
-	"/register",
-	"/reset-password",
-	"/forgot-password",
-	"/",
+  "/login",
+  "/register",
+  "/reset-password",
+  "/forgot-password",
+  "/",
 ];
 
 export async function middleware(request: NextRequest) {
-	const { pathname } = request.nextUrl;
+  // Get token from request cookies
+  const token = request.cookies.get("token")?.value;
 
-	// Check if the current path is a public route
-	const isPublicRoute = publicRoutes.some((route) => pathname === route);
+  // Get the pathname of the request (e.g. /, /protected, /login)
+  const path = request.nextUrl.pathname;
 
-	// Allow access to public routes without authentication
-	if (isPublicRoute) {
-		return NextResponse.next();
-	}
+  // Public paths that don't require authentication
+  const isPublicPath = publicRoutes.some((route) => path === route);
 
-	// For all other routes, check for authentication
-	const token = request.cookies.get("token")?.value;
+  // If the user is not authenticated and trying to access a protected route
+  if (!token && !isPublicPath) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
 
-	if (!token) {
-		return NextResponse.redirect(new URL("/login", request.url));
-	}
+  // If the user is authenticated and trying to access login/register page
+  if (token && isPublicPath) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
 
-	try {
-		await verifyJwtToken(token);
-		return NextResponse.next();
-	} catch (error) {
-		return NextResponse.redirect(new URL("/login", request.url));
-	}
+  return NextResponse.next();
 }
 
 export const config = {
-	// Match all routes except api, _next/static, _next/image, favicon.ico
-	matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  // Match all routes except api, _next/static, _next/image, favicon.ico
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
